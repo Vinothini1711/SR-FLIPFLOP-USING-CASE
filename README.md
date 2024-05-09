@@ -33,16 +33,49 @@ By using three variable K-Map, we can get the simplified expression for next sta
 The maximum possible groupings of adjacent ones are already shown in the figure. Therefore, the simplified expression for next state Qt+1t+1 is Q(t+1)=S+R′Q(t)Q(t+1)=S+R′Q(t)
 
 **Procedure**
-
-/* write all the steps invloved */
-
+```
+Step 1: Open Quartus II in your laptop.
+Step 2: Write code to implement SR flipflop using verilog and validating their functionality using their functional tables.
+Step 3: Run compilation to check for errors.
+Step 4: Open waveform output and load input values.
+Step 5: Run simulation to get the output.
+Step 6: Open in RTL viewers to get RTL diagram output.
+```
 **PROGRAM**
+```
+/* Program for flipflops and verify its truth table in quartus using Verilog programming.
+Developed by: VINOTHINI T
+RegisterNumber: 212223040245
 
-/* Program for flipflops and verify its truth table in quartus using Verilog programming. Developed by: RegisterNumber:
+module SRFLIPFLOPUSINGCASE(q, q_bar, s,r, clk, reset);//SR Flip Flop Behavioral Level using ‘case’ 
+ input s,r,clk, reset;
+ output reg q;
+ output q_bar;
+
+ always@(posedge clk) begin // for synchronous reset
+   if(!reset)       q <= 0;
+   else 
+ begin
+     case({s,r})       
+        2'b00: q <= q;     // No change
+       2'b01: q <= 1'b0;  // Write logic for reset
+       2'b10: q <= 1'b1;  // Write logic for set
+       2'b11:	q <= 1'bx;	// Write logic for Invalid state                      
+     endcase
+   end
+ end
+ assign q_bar = ~q;
+endmodule
 */
-
+```
 **RTL LOGIC FOR FLIPFLOPS**
+
+![Screenshot 2024-05-09 132213](https://github.com/Vinothini1711/SR-FLIPFLOP-USING-CASE/assets/144300204/36d95fb3-b1a3-4c3e-93d1-985e5bc10256)
 
 **TIMING DIGRAMS FOR FLIP FLOPS**
 
+![Screenshot 2024-05-09 132230](https://github.com/Vinothini1711/SR-FLIPFLOP-USING-CASE/assets/144300204/78722cfa-be33-439a-a746-c19ba5fbd2ee)
+
 **RESULTS**
+
+Hence, SR flipflop using verilog and validating their functionality using their functional tables is implemented.
